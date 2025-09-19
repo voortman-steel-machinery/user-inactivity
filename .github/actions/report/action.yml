@@ -10,7 +10,7 @@ inputs:
     description: name of repo to create issues in
   inactivity-duration:
     description: the amount of days a user can be inactive for
-    default: 30
+    default: 40
   APP_ID:
     description: the app id
   APP_PRIVATE_KEY:
@@ -23,8 +23,8 @@ runs:
     - uses: actions/checkout@v3
       with:
         path: main
-        repository: oss-tooling/user-inactivity
-        ref: v1.1.7
+        repository: voortman-steel-machinery/user-inactivity
+        ref: main
     
     - uses: actions/checkout@v3
       with:
