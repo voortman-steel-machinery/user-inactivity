@@ -41,6 +41,22 @@ runs:
       working-directory: ${{ github.workspace }}/main
       shell: bash
     
+    - name: Debug Environment Variables
+      run: |
+        echo "APP_ID input: ${{ inputs.APP_ID }}"
+        echo "APP_PRIVATE_KEY input length: ${#APP_PRIVATE_KEY_INPUT}"
+        echo "APP_INSTALLATION_ID input: ${{ inputs.APP_INSTALLATION_ID }}"
+        echo "GH_APP_ID env: ${GH_APP_ID:-'NOT SET'}"
+        echo "GH_APP_INSTALLATION_ID env: ${GH_APP_INSTALLATION_ID:-'NOT SET'}"
+        echo "ORG env: ${ORG:-'NOT SET'}"
+      shell: bash
+      env:
+        APP_PRIVATE_KEY_INPUT: ${{ inputs.APP_PRIVATE_KEY }}
+        GH_APP_ID: ${{ inputs.APP_ID }}
+        GH_APP_PRIVATE_KEY: ${{ inputs.APP_PRIVATE_KEY }}
+        GH_APP_INSTALLATION_ID: ${{ inputs.APP_INSTALLATION_ID }}
+        ORG: ${{ inputs.org }}
+
     - name: Collect Audit Log
       run: node src/audit.js
       working-directory: ${{ github.workspace }}/main
